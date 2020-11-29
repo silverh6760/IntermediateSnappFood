@@ -15,14 +15,14 @@
         <property name="hibernate.format_sql">false</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <mapping class="model.entity.Admin"/>
-        <mapping class="model.entity.User"/>
-        <mapping class="model.entity.Restaurant"/>
-        <mapping class="model.entity.Food"/>
-        <mapping class="model.entity.Customer"/>
-        <mapping class="model.entity.Reservation"/>
-<!--        <mapping class="model.entity.Customer"/>-->
-<!--        <mapping class="model.entity.Reservation"/>-->
+        <mapping class="ir.simSoft.snappfood.model.entity.Admin"/>
+        <mapping class="ir.simSoft.snappfood.model.entity.User"/>
+        <mapping class="ir.simSoft.snappfood.model.entity.Restaurant"/>
+        <mapping class="ir.simSoft.snappfood.model.entity.Food"/>
+        <mapping class="ir.simSoft.snappfood.model.entity.Customer"/>
+        <mapping class="ir.simSoft.snappfood.model.entity.Reservation"/>
+<!--        <mapping class="ir.simSoft.snappfood.model.entity.Customer"/>-->
+<!--        <mapping class="ir.simSoft.snappfood.model.entity.Reservation"/>-->
 
         <!--<mapping class="data.entity.Student"/>-->
 
