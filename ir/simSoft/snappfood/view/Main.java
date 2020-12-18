@@ -1,5 +1,6 @@
 package ir.simSoft.snappfood.view;
 
+import ir.simSoft.snappfood.config.SpringContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -12,11 +13,13 @@ public class Main {
 //    static CustomerView customerView = new CustomerView();
     static Scanner scan=new Scanner(System.in);
 
-    static ApplicationContext applicationContext = new
-            ClassPathXmlApplicationContext("applicationContext.xml");
+//    static ApplicationContext applicationContext = new
+//            ClassPathXmlApplicationContext("applicationContext.xml");
 
-     static AdminView adminView = applicationContext.getBean(AdminView.class);
-     static CustomerView customerView=applicationContext.getBean(CustomerView.class);
+    static  ApplicationContext appCtx=new AnnotationConfigApplicationContext(SpringContext.class);
+
+     static AdminView adminView = appCtx.getBean(AdminView.class);
+     static CustomerView customerView=appCtx.getBean(CustomerView.class);
     public static void main(String[] args) {
         while(true) {
             System.out.println("1-Admin");

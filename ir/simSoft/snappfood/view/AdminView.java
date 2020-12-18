@@ -12,10 +12,11 @@ import ir.simSoft.snappfood.model.entity.FoodType;
 import ir.simSoft.snappfood.model.entity.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Scanner;
-@Component
+@Service
 public class AdminView {
 
 
@@ -147,22 +148,28 @@ public class AdminView {
     private void addFood() {
         System.out.println("Enter the name of Restaurant");
         String nameOfRest = GetInput.getStringFromUser();
-        System.out.println("Enter the number of Food");
-        int countOfFood = GetInput.getInt();
-        for (int i = 1; i <= countOfFood; i++) {
-            System.out.println("Enter name of food");
-            String nameOfFood = GetInput.getStringFromUser();
-            FoodType foodType = getFoodTypeFromUser();
-            System.out.println("Enter the price of food");
-            long price = GetInput.getLongFromUser();
-            System.out.println("Enter count of food");
-            int count = GetInput.getInt();
-            FoodDto foodDto = new FoodDto(nameOfFood, foodType, price, count);
-            boolean answer = foodService.addFoodToRestaurant(foodDto, nameOfRest);
-            if (answer == true)
-                System.out.println(foodDto + " is added successfully into the DB");
-            else
-                System.out.println("The name of Food is repetitive");
+        Restaurant restaurantByName = restaurantService.findRestaurantByName(nameOfRest);
+        if(restaurantByName!=null) {
+            System.out.println("Enter the number of Food");
+            int countOfFood = GetInput.getInt();
+            for (int i = 1; i <= countOfFood; i++) {
+                System.out.println("Enter name of food");
+                String nameOfFood = GetInput.getStringFromUser();
+                FoodType foodType = getFoodTypeFromUser();
+                System.out.println("Enter the price of food");
+                long price = GetInput.getLongFromUser();
+                System.out.println("Enter count of food");
+                int count = GetInput.getInt();
+                FoodDto foodDto = new FoodDto(nameOfFood, foodType, price, count);
+                boolean answer = foodService.addFoodToRestaurant(foodDto, restaurantByName);
+                if (answer == true)
+                    System.out.println(foodDto + " is added successfully into the DB");
+                else
+                    System.out.println("The name of Food is repetitive");
+            }
+        }
+        else{
+            System.out.println("The Restaurant does not exist!");
         }
     }
 

@@ -20,7 +20,7 @@ public class User {
         this.postalCode = postalCode;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

@@ -1,0 +1,38 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+    <persistence-unit name="xxx">
+        <description>Thougths on Java</description>
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>ir.simSoft.snappfood.model.entity.Admin</class>
+        <class>ir.simSoft.snappfood.model.entity.User</class>
+        <class>ir.simSoft.snappfood.model.entity.Restaurant</class>
+        <class>ir.simSoft.snappfood.model.entity.Food</class>
+        <class>ir.simSoft.snappfood.model.entity.Customer</class>
+        <class>ir.simSoft.snappfood.model.entity.Reservation</class>
+
+        <properties>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/snappfoodspring" />
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+
+            <property name="hibernate.connection.pool_size" value="10"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+            <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.internal.EhcacheRegionFactory"/>
+            <property name="hibernate.cache.use_second_level_cache" value="true"/>
+            <property name="hibernate.cache.use_query_cache" value="true"/>
+        </properties>
+
+
+
+
+    </persistence-unit>
+</persistence>

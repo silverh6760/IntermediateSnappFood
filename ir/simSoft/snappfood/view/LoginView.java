@@ -3,9 +3,10 @@ package ir.simSoft.snappfood.view;
 import ir.simSoft.snappfood.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Scanner;
-@Component
+@Service
 public class LoginView {
     AdminService adminService;
     @Autowired

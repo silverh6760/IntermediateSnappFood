@@ -5,9 +5,13 @@ import ir.simSoft.snappfood.model.dto.CustomerDto;
 import ir.simSoft.snappfood.model.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-@Component
+import java.util.Optional;
+
+@Service
 public class CustomerService {
 
     CustomerDao customerDao;
@@ -16,15 +20,21 @@ public class CustomerService {
         this.customerDao = customerDao;
     }
 
+    @Transactional
     public Customer checkUser(String phoneNumber) {
-        Customer customer=customerDao.checkUser(phoneNumber);
-        return customer;
+      Customer customer = customerDao.findByPhoneNumber(phoneNumber);
+        if(customer!=null)
+            return customer;
+        else
+            return null;
     }
 
+    @Transactional
     public void addNewCustomer(Customer customer) {
-        customerDao.addNewCustomer(customer);
+        customerDao.save(customer);
     }
 
+    @Transactional
     public List<CustomerDto> observeCustomerReport() {
         List<CustomerDto> customerDtoList =customerDao.observeCustomerReport();
         return customerDtoList;

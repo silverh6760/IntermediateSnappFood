@@ -7,11 +7,13 @@ import ir.simSoft.snappfood.service.RestaurantService;
 import ir.simSoft.snappfood.model.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-@Component
+@Service
 public class CustomerView {
     Scanner scan = new Scanner(System.in);
     String phoneNumber;
@@ -177,14 +179,15 @@ public class CustomerView {
         if (customer == null) {
             customer = addNewCustomer();
         }
-        int factorNumber = reservationService.getMaxFactorNumber();
-        for(Reservation reservation :ordersList){
-            reservation.setCustomer(customer);
-            reservation.setFactorNumber(factorNumber);
-            reservation.setDate(new Date());
-            reservation.getFood().setCount(reservation.getFood().getCount()-1);
-            reservationService.saveOrderToDB(reservation);//save the whole list into the DB
-        }
+            int factorNumber = reservationService.getMaxFactorNumber();
+            for(Reservation reservation :ordersList){
+                reservation.setCustomer(customer);
+                reservation.setFactorNumber(factorNumber);
+                reservation.setDate(new Date());
+                reservation.getFood().setCount(reservation.getFood().getCount()-1);
+                reservationService.saveOrderToDB(reservation);//save the whole list into the DB
+            }
+
         //empty out cart
         ordersList.clear();
         customerPanel();

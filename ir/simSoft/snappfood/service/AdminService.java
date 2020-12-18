@@ -3,9 +3,12 @@ package ir.simSoft.snappfood.service;
 import ir.simSoft.snappfood.model.dao.AdminDao;
 import ir.simSoft.snappfood.model.entity.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+import javax.transaction.Transactional;
+import java.util.Optional;
+
+@Service
 public class AdminService {
 
     AdminDao adminDao;
@@ -14,13 +17,17 @@ public class AdminService {
         this.adminDao = adminDao;
     }
 
+    @Transactional
     public boolean verifyAdmin(String username, String password) {
-        boolean answer=adminDao.verifyAdmin(username,password);
-        return answer;
+        Optional<Admin> admin = adminDao.findByUsernameAndPassword(username, password);
+        if(admin.isPresent())
+            return true;
+        else
+            return false;
     }
 
-
+    @Transactional
     public void addNewAdmin(Admin admin) {
-        adminDao.addNewAdmin(admin);
+        adminDao.save(admin);
     }
 }

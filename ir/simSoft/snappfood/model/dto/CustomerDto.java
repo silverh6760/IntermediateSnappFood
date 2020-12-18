@@ -9,6 +9,14 @@ public class CustomerDto {
     private Date registerDate;
     private Long totalPurchase;
 
+    public CustomerDto(String firstName, String lastName, String phoneNumber, Date registerDate, Long totalPurchase) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.registerDate = registerDate;
+        this.totalPurchase = totalPurchase;
+    }
+
     public CustomerDto() {
     }
 
